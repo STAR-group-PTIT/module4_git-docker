@@ -8,7 +8,7 @@ Nguyễn Thanh Cường -
 
 # module4_git-docker
 
-NestJS + PostgreSQL + Redis chạy bằng Podman (podman-compose).
+NestJS + PostgreSQL + Redis chạy bằng Docker Compose (Podman cũng tương thích, xem phần bên dưới).
 
 ## Stack
 
@@ -23,14 +23,15 @@ NestJS + PostgreSQL + Redis chạy bằng Podman (podman-compose).
 
 ## Yêu cầu
 
-- Podman 5.x + podman-compose
+- Docker Engine 24+ + Docker Compose v2 (khuyến nghị)
+- Hoặc Podman 5.x + podman-compose (alternative)
 - (Tùy chọn) Node 22 để chạy app trực tiếp trên host
 
 ## Chạy
 
 ```bash
 cp .env.example .env   # điều chỉnh nếu cần
-podman-compose up -d --build
+docker compose up -d --build
 curl http://localhost:3100/health
 ```
 
@@ -43,11 +44,21 @@ Kết quả mong đợi:
 ## Lệnh thường dùng
 
 ```bash
-podman-compose up -d            # khởi động các service
-podman-compose down             # dừng + xóa container (giữ volume)
-podman-compose down -v          # dừng + xóa cả volume dữ liệu
-podman-compose logs -f api      # xem log
-podman-compose ps               # trạng thái container
+docker compose up -d            # khởi động các service
+docker compose down             # dừng + xóa container (giữ volume)
+docker compose down -v          # dừng + xóa cả volume dữ liệu
+docker compose logs -f api      # xem log
+docker compose ps               # trạng thái container
+```
+
+## Podman (alternative)
+
+Máy dùng Podman thay thế `docker compose` bằng `podman-compose` (tương đương lệnh):
+
+```bash
+podman-compose up -d --build
+podman-compose down
+podman-compose logs -f api
 ```
 
 ## Chạy app trên host (dev)
