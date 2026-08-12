@@ -1,0 +1,14 @@
+node_modules/
+dist/
+coverage/
+
+# environment
+.env
+
+# logs
+*.log
+npm-debug.log*
+
+# editor
+.vscode/
+.idea/
